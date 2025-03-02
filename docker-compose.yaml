@@ -15,7 +15,7 @@ services:
     depends_on:
       - frontend
     networks:
-      - user_net   
+      - user_net
   certbot:
     image: certbot/certbot:v3.2.0
     container_name: certbot
