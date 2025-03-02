@@ -1,4 +1,4 @@
-# Flask User Management API
+# User Management API
 
 ## Используемые технологии
 
