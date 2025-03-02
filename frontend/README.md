@@ -1,4 +1,4 @@
-# Vite User Management Frontend
+# User Management Frontend
 
 ## 🚀 Технологии
 
