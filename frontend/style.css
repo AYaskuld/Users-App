@@ -1,0 +1,263 @@
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #646cff;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 1rem;
+  color: #535bf2;
+}
+
+#app {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.api-config {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  background-color: #e8e8e8;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input {
+  padding: 0.6rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: white;
+  color: #333;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.3);
+}
+
+.primary-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #646cff;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.primary-button:hover {
+  background-color: #535bf2;
+  transform: translateY(-1px);
+}
+
+.primary-button:focus,
+.primary-button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.result {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  overflow-wrap: break-word;
+}
+
+.result.success {
+  background-color: rgba(39, 174, 96, 0.1);
+  border-left: 4px solid #27ae60;
+}
+
+.result.error {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-left: 4px solid #e74c3c;
+}
+
+.result.info {
+  background-color: rgba(52, 152, 219, 0.1);
+  border-left: 4px solid #3498db;
+}
+
+.user-data {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification.success {
+  background-color: #27ae60;
+  color: white;
+}
+
+.notification.error {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.status-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.status-indicator.healthy {
+  background-color: #27ae60;
+}
+
+.status-indicator.unhealthy {
+  background-color: #e74c3c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+  }
+  
+  .card {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .api-config {
+    background-color: #2a2a2a;
+  }
+  
+  input {
+    background-color: #333;
+    border-color: #444;
+    color: white;
+  }
+  
+  .result.success {
+    background-color: rgba(39, 174, 96, 0.2);
+  }
+  
+  .result.error {
+    background-color: rgba(231, 76, 60, 0.2);
+  }
+  
+  .result.info {
+    background-color: rgba(52, 152, 219, 0.2);
+  }
+  
+  .notification {
+    background-color: #333;
+    color: white;
+  }
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding: 1rem;
+  }
+  
+  .card, .api-config {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  h2 {
+    font-size: 1.2em;
+  }
+}

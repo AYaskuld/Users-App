@@ -1,0 +1,83 @@
+services:
+  nginx:
+    image: nginx:1.25.0-alpine
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/certbot:/etc/letsencrypt
+      - ./nginx/webroot:/var/www/certbot
+      - ./frontend/dist:/var/www/frontend
+    command: /bin/sh -c "nginx -g 'daemon off;' & while :; do sleep 12h; nginx -s reload; done"
+    depends_on:
+      - frontend
+    networks:
+      - user_net   
+  certbot:
+    image: certbot/certbot:v3.2.0
+    container_name: certbot
+    restart: always
+    volumes:
+      - ./nginx/certbot:/etc/letsencrypt
+      - ./nginx/webroot:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - user_net 
+  postgres:
+    image: postgres:14.4-alpine
+    container_name: ${POSTGRES_HOST}
+    restart: always
+    expose:
+      - ${POSTGRES_PORT}
+    volumes:
+      - "db_data:/var/lib/postgresql/data"
+    env_file:
+      - .env
+    command: ["postgres", "-c", "port=${POSTGRES_PORT}", "-c", "log_statement=all"]
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - user_net    
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: users-app:${VERSION}
+    container_name: app
+    restart: always
+    expose:
+      - ${SERVER_PORT}
+    env_file:
+      - .env
+    depends_on: 
+      - postgres
+#        condition: service_healthy
+    networks:
+      - user_net
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: users-app-frontend:${VERSION}
+    container_name: user_frontend_builder
+    volumes:
+      - ./frontend:/usr/src/app
+    environment:
+      - VITE_API_BASE_URL=${VITE_API_BASE_URL}
+    command: sh -c "npm install && npm run build"
+    depends_on:
+      - app
+    networks:
+      - user_net
+networks:
+  user_net:
+
+volumes:
+  db_data:
