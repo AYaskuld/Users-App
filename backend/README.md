@@ -2,7 +2,6 @@
 
 ## Используемые технологии
 
-- **[Docker+docker-compose](https://www.docker.com/)**: Инструменты для контейнеризации приложений.
 - **[Python v3.9.21](https://www.python.org/downloads/release/python-3921/)**: Язык программирования Python.
 - **[FastApi](https://fastapi.tiangolo.com/ru/)**: Фреймворк для создания микросервисов.
 
