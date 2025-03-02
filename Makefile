@@ -3,20 +3,20 @@
 
 # Сборка образов
 build:
-	docker-compose build
+	docker compose build
 
 # Запуск сервисов в фоновом режиме
 up:
-	docker-compose up -d
+	docker compose up -d
 
 # Остановка сервисов
 down:
-	docker-compose down
+	docker compose down
 
 # Перезапуск сервисов
 restart:
-	docker-compose down
-	docker-compose up -d
+	docker compose down
+	docker compose up -d
 
 # show help
 help:
