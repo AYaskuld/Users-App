@@ -4,7 +4,7 @@ import { setupUserInterface } from './userInterface.js'
 
 document.querySelector('#app').innerHTML = `
   <div class="container">
-    <h1>User Management app</h1>
+    <h1>User Management App</h1>
 
     <div class="card">
       <h2>Create User</h2>
