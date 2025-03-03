@@ -13,7 +13,8 @@ services:
       - ./frontend/dist:/var/www/frontend
     command: /bin/sh -c "nginx -g 'daemon off;' & while :; do sleep 12h; nginx -s reload; done"
     depends_on:
-      - frontend
+      frontend:
+        condition: service_completed_successfully
     networks:
       - user_net
   certbot:
